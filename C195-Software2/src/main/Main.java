@@ -5,14 +5,15 @@ package main;
  * @author Tyler Sanders
  */
 
-import util.Local;
-import util.DBQuery;
+import dao.*;
+import model.Contact;
+import model.Country;
+import utilities.Local;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import util.DBConnection;
 
 import java.sql.*;
 
@@ -32,19 +33,24 @@ public class Main extends Application{
     public static void main(String[] args) throws SQLException {
         DBConnection.openConnection();
         System.out.println(Local.getLanguage());
-        String fetchStatement = "SELECT * FROM countries";
-        DBQuery.setPreparedStatement(DBConnection.getConnection(),fetchStatement);
-        PreparedStatement statement = DBQuery.getPreparedStatement();
+        //String fetchStatement = "SELECT * FROM countries";
+       // DBQuery.setPreparedStatement(fetchStatement);
+        //PreparedStatement statement = DBQuery.getPreparedStatement();
 
         // "INSERT INTO countries (country, createDate, createdBy, lastUpdateBy)
         // VALUES('US', '2020-02-22 00:00:00', 'admin', 'admin";
-        statement.execute();
-        ResultSet results  = statement.getResultSet();
-        while (results.next())
-            System.out.println(results.getString("Country"));
+        //statement.execute();
+        //ResultSet results  = statement.getResultSet();
+        //while (results.next())
+        //    System.out.println(results.getString("Country"));
+       // Country country = CountryDAO.getCountry("UK");
+        //System.out.println("test: " + country.getCountryName());
 
-        System.out.println(Local.getLocation());
-        System.out.println(Local.getTimeZoneId() + "\n");
+
+
+        //System.out.println(AppointmentDAO.getAllAppointments().get(1).getAppointmentId());
+        //System.out.println(Local.getLocation());
+        //System.out.println(Local.getTimeZoneId() + "\n");
 
         launch(args);
         DBConnection.closeConnection();

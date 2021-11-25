@@ -7,9 +7,11 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import util.Local;
+import utilities.Local;
 
 import java.io.IOException;
 import java.net.URL;
@@ -22,6 +24,11 @@ public class AppointmentEntryController implements Initializable {
     public Button cancel;
     public Label localLocation;
     public Label nowDatetime;
+    public TextField customerID;
+    public Label dateAvailable;
+    public Label userID;
+    public ComboBox typeComboBox;
+    public ComboBox contactNameComboBox;
 
 
     public void OnSave(ActionEvent actionEvent) throws IOException {

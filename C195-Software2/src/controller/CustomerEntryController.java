@@ -11,7 +11,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import util.Local;
+import utilities.Local;
 
 import java.io.IOException;
 import java.net.URL;
@@ -28,7 +28,6 @@ public class CustomerEntryController implements Initializable {
     public Button cancel;
     public TextField lastNameTextBox;
     public TextField zipCodeTextBox;
-    public TextField emailAddressTextBox;
     public TextField phoneNumberTextBox;
     public Label nowDatetime;
     public Label localLocation;

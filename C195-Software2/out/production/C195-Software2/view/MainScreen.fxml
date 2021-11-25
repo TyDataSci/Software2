@@ -18,7 +18,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="578.0" prefWidth="982.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainScreenController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="579.0" prefWidth="1160.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainScreenController">
       <children>
           <VBox layoutX="-1.0" layoutY="93.0" prefHeight="486.0" prefWidth="187.0" style="-fx-background-color: #394956;">
               <children>
@@ -141,7 +141,7 @@
                   </GridPane>
               </children>
           </VBox>
-      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="95.0" prefWidth="982.0" style="-fx-background-color: #394956;">
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="95.0" prefWidth="1161.0" style="-fx-background-color: #394956;">
          <children>
             <Line endX="68.0" layoutX="107.0" layoutY="81.0" startX="-92.0" stroke="#48658d" />
             <Label fx:id="welcomeUsername" alignment="BASELINE_CENTER" layoutX="5.0" layoutY="65.0" prefHeight="17.0" prefWidth="178.0" text="Welcome, Tyler Sanders" textFill="WHITE">
@@ -149,13 +149,13 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <Line fx:id="accentLine" endX="985.0" endY="123.0" layoutX="-3.0" layoutY="-28.0" startX="3.0" startY="123.0" stroke="CORAL" strokeWidth="5.0" />
+            <Line fx:id="accentLine" endX="1164.0" endY="123.0" layoutX="-3.0" layoutY="-28.0" startX="3.0" startY="123.0" stroke="CORAL" strokeWidth="5.0" />
             <Label fx:id="tabNameLabel" alignment="BOTTOM_LEFT" layoutX="208.0" layoutY="48.0" prefHeight="52.0" prefWidth="316.0" text="All Appointments" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="30.0" />
                </font>
             </Label>
-            <Button fx:id="logOut" layoutX="947.0" mnemonicParsing="false" onAction="#onLogOut" prefHeight="26.0" prefWidth="38.0" style="-fx-background-insets: 3; -fx-background-color: #394956;" textFill="#1bc900">
+            <Button fx:id="logOut" layoutX="1128.0" layoutY="-1.0" mnemonicParsing="false" onAction="#onLogOut" prefHeight="29.0" prefWidth="34.0" style="-fx-background-insets: 3; -fx-background-color: #394956;" textFill="#1bc900">
                <graphic>
                   <ImageView fitHeight="22.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -165,21 +165,26 @@
                </graphic></Button>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="196.0" layoutY="105.0" prefHeight="465.0" prefWidth="775.0" style="-fx-background-color: #394956; -fx-background-radius: 5;">
+      <AnchorPane layoutX="196.0" layoutY="105.0" prefHeight="465.0" prefWidth="951.0" style="-fx-background-color: #394956; -fx-background-radius: 5;">
          <children>
-            <TableView layoutX="9.0" layoutY="37.0" prefHeight="392.0" prefWidth="757.0">
+            <TableView fx:id="mainTable" layoutX="9.0" layoutY="37.0" prefHeight="392.0" prefWidth="928.0">
                <columns>
-                  <TableColumn prefWidth="135.0" style="-fx-text-fill: #394956;" text="FirstName" />
-                  <TableColumn prefWidth="136.0" text="LastName" />
-                  <TableColumn prefWidth="138.0" text="Time" />
-                  <TableColumn prefWidth="149.0" text="Title" />
-                  <TableColumn prefWidth="197.0" text="Summary" />
+                  <TableColumn fx:id="Col1" prefWidth="60.0" style="-fx-text-fill: #394956;" text="Column1" />
+                  <TableColumn fx:id="Col2" prefWidth="90.0" text="Column2" />
+                  <TableColumn fx:id="Col3" prefWidth="72.0" text="Column3" />
+                  <TableColumn fx:id="Col4" prefWidth="93.0" text="Column4" />
+                  <TableColumn fx:id="Col5" prefWidth="101.0" text="Column5" />
+                  <TableColumn fx:id="Col6" prefWidth="113.0" text="Column6" />
+                  <TableColumn fx:id="Col7" prefWidth="124.0" text="Column7" />
+                  <TableColumn fx:id="Col8" prefWidth="93.0" text="Column8" />
+                  <TableColumn fx:id="Col9" prefWidth="93.0" text="Column9" />
+                  <TableColumn fx:id="Col10" prefWidth="88.0" text="Column10" />
                </columns>
             </TableView>
-            <TextField fx:id="searchBox" layoutX="519.0" layoutY="9.0" prefHeight="25.0" prefWidth="214.0" />
-            <ToggleButton fx:id="languageEN" layoutX="701.0" layoutY="436.0" mnemonicParsing="false" onAction="#onLanguageEN" prefHeight="25.0" prefWidth="34.0" style="-fx-background-radius: 50; -fx-background-color: #F4A460;" text="EN" />
-            <ToggleButton fx:id="languageFR" layoutX="735.0" layoutY="436.0" mnemonicParsing="false" onAction="#onLanguageFR" prefHeight="25.0" prefWidth="34.0" style="-fx-background-radius: 50; -fx-background-color: #FFEFD5;" text="FR" />
-            <Label alignment="BASELINE_RIGHT" layoutX="635.0" layoutY="436.0" prefHeight="25.0" prefWidth="63.0" text="Language" textFill="#fafafa">
+            <TextField fx:id="searchBox" layoutX="650.0" layoutY="9.0" prefHeight="25.0" prefWidth="251.0" />
+            <ToggleButton fx:id="languageEN" layoutX="878.0" layoutY="436.0" mnemonicParsing="false" onAction="#onLanguageEN" prefHeight="25.0" prefWidth="34.0" style="-fx-background-radius: 50; -fx-background-color: #F4A460;" text="EN" />
+            <ToggleButton fx:id="languageFR" layoutX="912.0" layoutY="436.0" mnemonicParsing="false" onAction="#onLanguageFR" prefHeight="25.0" prefWidth="34.0" style="-fx-background-radius: 50; -fx-background-color: #FFEFD5;" text="FR" />
+            <Label alignment="BASELINE_RIGHT" layoutX="812.0" layoutY="436.0" prefHeight="25.0" prefWidth="63.0" text="Language" textFill="#fafafa">
                <font>
                   <Font size="14.0" />
                </font>
@@ -196,7 +201,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="searchButton" layoutX="739.0" layoutY="8.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onSearchButton" prefHeight="25.0" prefWidth="28.0" style="-fx-background-radius: 5; -fx-background-color: #F4A460;">
+            <Button fx:id="searchButton" layoutX="909.0" layoutY="9.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onSearchButton" prefHeight="25.0" prefWidth="28.0" style="-fx-background-radius: 5; -fx-background-color: #F4A460;">
                <graphic>
                   <ImageView fitHeight="22.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -217,7 +222,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <ComboBox fx:id="dropdownComboBox" layoutX="310.0" layoutY="8.0" onAction="#onDropdownComboBox" prefHeight="25.0" prefWidth="202.0" />
+            <ComboBox fx:id="dropdownComboBox" layoutX="392.0" layoutY="8.0" onAction="#onDropdownComboBox" prefHeight="25.0" prefWidth="251.0" />
             <Button fx:id="deleteEntry" alignment="TOP_LEFT" layoutX="227.0" layoutY="7.0" mnemonicParsing="false" onAction="#onDeleteEntry" prefHeight="26.0" prefWidth="70.0" style="-fx-background-radius: 50; -fx-background-color: #CD5C5C;" text="Delete">
                <graphic>
                   <ImageView fitHeight="12.0" fitWidth="10.0" pickOnBounds="true" preserveRatio="true">

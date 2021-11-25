@@ -1,5 +1,6 @@
 package controller;
 
+import dao.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -8,10 +9,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import util.Local;
+import utilities.Local;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class LoginInController implements Initializable {
@@ -64,6 +66,7 @@ public class LoginInController implements Initializable {
         languageEN.setStyle("-fx-background-radius: 50;-fx-background-color:#FFEFD5");
     }
 
+    @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         System.out.println("Initialized.");
         ResourceBundle rb = ResourceBundle.getBundle("assets/languages/rb");
@@ -72,6 +75,7 @@ public class LoginInController implements Initializable {
         }
         nowDatetime.setText(Local.getNowDateTime());
         localLocation.setText(Local.getLocation());
+
 
 
     }
