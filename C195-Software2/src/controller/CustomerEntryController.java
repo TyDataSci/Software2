@@ -18,7 +18,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class CustomerEntryController implements Initializable {
-    public TextField firstNameTextBox;
     public Button save;
     public TextField streetNameTextBox;
     public TextField cityTextBox;
@@ -26,11 +25,11 @@ public class CustomerEntryController implements Initializable {
     public Label divisionLabel;
     public ComboBox divisionComboBox;
     public Button cancel;
-    public TextField lastNameTextBox;
     public TextField zipCodeTextBox;
     public TextField phoneNumberTextBox;
     public Label nowDatetime;
     public Label localLocation;
+    public TextField customerNameTextBox;
 
     public void onSave(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/view/MainScreen.fxml"));

@@ -11,66 +11,82 @@ import java.sql.SQLException;
 
 public class CountryDAO {
     private static final String tableName = "countries";
-    public static ObservableList<Country> getAllCountries() throws SQLException {
+    public static ObservableList<Country> getAllCountries() {
         ObservableList<Country> allCountries = FXCollections.observableArrayList();
-        String fetchStatement = "SELECT * FROM " + tableName;
-        Connection connection = DBConnection.getConnection();
-        DBQuery.setPreparedStatement(connection, fetchStatement);
-        PreparedStatement statement = DBQuery.getPreparedStatement();
-        statement.execute();
-        ResultSet results  = statement.getResultSet();
-        while (results.next()){
-            Country country = new Country(
-                    results.getInt("Country_ID"),
-                    results.getString("Country"),
-                    results.getString("Create_Date"),
-                    results.getString("Created_By"),
-                    results.getString("Last_Update"),
-                    results.getString("Last_Updated_By"));
-            allCountries.add(country);
+        try {
+            String fetchStatement = "SELECT * FROM " + tableName;
+            Connection connection = DBConnection.getConnection();
+            DBQuery.setPreparedStatement(connection, fetchStatement);
+            PreparedStatement statement = DBQuery.getPreparedStatement();
+            statement.execute();
+            ResultSet results  = statement.getResultSet();
+            while (results.next()) {
+                Country country = new Country(
+                        results.getInt("Country_ID"),
+                        results.getString("Country"),
+                        results.getString("Create_Date"),
+                        results.getString("Created_By"),
+                        results.getString("Last_Update"),
+                        results.getString("Last_Updated_By"));
+                allCountries.add(country);
+            }
+
+        } catch (SQLException e){
+            System.out.println(e.getMessage());
         }
         return allCountries;
     }
-    public static Country getCountry(String selectCountryName) throws SQLException {
+    public static Country getCountry(String selectCountryName) {
         Country country = null;
-        String fetchStatement = "SELECT * FROM " + tableName + " WHERE Country = ?";
-        System.out.println(fetchStatement);
-        Connection connection = DBConnection.getConnection();
-        DBQuery.setPreparedStatement(connection, fetchStatement);
-        PreparedStatement statement = DBQuery.getPreparedStatement();
-        statement.setString(1,selectCountryName);
-        statement.execute();
-        ResultSet results  = statement.getResultSet();
-        while (results.next()) {
-            country = new Country(
-                    results.getInt("Country_ID"),
-                    results.getString("Country"),
-                    results.getString("Create_Date"),
-                    results.getString("Created_By"),
-                    results.getString("Last_Update"),
-                    results.getString("Last_Updated_By"));
+        try {
+            String fetchStatement = "SELECT * FROM " + tableName + " WHERE Country = ?";
+            System.out.println(fetchStatement);
+            Connection connection = DBConnection.getConnection();
+            DBQuery.setPreparedStatement(connection, fetchStatement);
+            PreparedStatement statement = DBQuery.getPreparedStatement();
+            statement.setString(1,selectCountryName);
+            statement.execute();
+            ResultSet results  = statement.getResultSet();
+            while (results.next()) {
+                country = new Country(
+                        results.getInt("Country_ID"),
+                        results.getString("Country"),
+                        results.getString("Create_Date"),
+                        results.getString("Created_By"),
+                        results.getString("Last_Update"),
+                        results.getString("Last_Updated_By"));
+            }
+
+        }
+        catch (SQLException e) {
+            System.out.println(e.getMessage());
         }
 
             return country;
         }
     public static Country getCountry(int selectCountryId) throws SQLException {
         Country country = null;
-        String fetchStatement = "SELECT * FROM " + tableName + " WHERE Country_ID = ?" ;
-        System.out.println(fetchStatement);
-        Connection connection = DBConnection.getConnection();
-        DBQuery.setPreparedStatement(connection, fetchStatement);
-        PreparedStatement statement = DBQuery.getPreparedStatement();
-        statement.setInt(1,selectCountryId);
-        statement.execute();
-        ResultSet results  = statement.getResultSet();
-        while (results.next()) {
-            country = new Country(
-                    results.getInt("Country_ID"),
-                    results.getString("Country"),
-                    results.getString("Create_Date"),
-                    results.getString("Created_By"),
-                    results.getString("Last_Update"),
-                    results.getString("Last_Updated_By"));
+        try {
+            String fetchStatement = "SELECT * FROM " + tableName + " WHERE Country_ID = ?" ;
+            System.out.println(fetchStatement);
+            Connection connection = DBConnection.getConnection();
+            DBQuery.setPreparedStatement(connection, fetchStatement);
+            PreparedStatement statement = DBQuery.getPreparedStatement();
+            statement.setInt(1,selectCountryId);
+            statement.execute();
+            ResultSet results  = statement.getResultSet();
+            while (results.next()) {
+                country = new Country(
+                        results.getInt("Country_ID"),
+                        results.getString("Country"),
+                        results.getString("Create_Date"),
+                        results.getString("Created_By"),
+                        results.getString("Last_Update"),
+                        results.getString("Last_Updated_By"));
+            }
+        }
+        catch (SQLException e) {
+            System.out.println(e.getMessage());
         }
 
         return country;

@@ -10,7 +10,6 @@ public class DBQuery
 
 
     public static void setPreparedStatement(Connection connection, String sqlStatement) throws SQLException {
-        //Connection connection = DBConnection.getConnection();
         statement = connection.prepareStatement(sqlStatement);
     }
 
