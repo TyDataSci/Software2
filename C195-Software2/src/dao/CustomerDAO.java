@@ -32,7 +32,8 @@ public class CustomerDAO {
                         results.getString("Created_By"),
                         results.getString("Last_Update"),
                         results.getString("Last_Updated_By"),
-                        results.getInt("Division_ID"));
+                        results.getInt("Division_ID"),
+                DivisionDAO.getDivisionMap().get(results.getInt("Division_ID")));
                 allCustomers.add(customer);
             }
         }
@@ -63,7 +64,8 @@ public class CustomerDAO {
                         results.getString("Created_By"),
                         results.getString("Last_Update"),
                         results.getString("Last_Updated_By"),
-                        results.getInt("Division_ID"));}
+                        results.getInt("Division_ID"),
+                        DivisionDAO.getDivisionMap().get(results.getInt("Division_ID")));}
         }
         catch (SQLException e) {
             System.out.println(e.getMessage());

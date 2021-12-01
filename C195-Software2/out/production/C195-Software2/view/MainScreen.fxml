@@ -150,7 +150,7 @@
                </font>
             </Label>
             <Line fx:id="accentLine" endX="1164.0" endY="123.0" layoutX="-3.0" layoutY="-28.0" startX="3.0" startY="123.0" stroke="CORAL" strokeWidth="5.0" />
-            <Label fx:id="tabNameLabel" alignment="BOTTOM_LEFT" layoutX="208.0" layoutY="48.0" prefHeight="52.0" prefWidth="316.0" text="All Appointments" textFill="WHITE">
+            <Label fx:id="tabNameLabel" alignment="BOTTOM_LEFT" layoutX="208.0" layoutY="48.0" prefHeight="52.0" prefWidth="457.0" text="All Appointments" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="30.0" />
                </font>

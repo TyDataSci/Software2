@@ -82,28 +82,28 @@ public class MainScreenController implements Initializable {
         window.show();
     }
 
-    public void onReportsTab(ActionEvent actionEvent) throws IOException, SQLException {
+    public void onReportsTab(ActionEvent actionEvent) {
         ControllerTabState.setState("isReportsTab");
         setTabProperties();
     }
 
-    public void onDailyTab(ActionEvent actionEvent) throws IOException, SQLException {
+    public void onDailyTab(ActionEvent actionEvent) {
         ControllerTabState.setState("isDailyTab");
         setTabProperties();
 
     }
 
-    public void onWeeklyTab(ActionEvent actionEvent) throws IOException, SQLException {
+    public void onWeeklyTab(ActionEvent actionEvent)  {
         ControllerTabState.setState("isWeeklyTab");
         setTabProperties();
     }
 
-    public void onMonthlyTab(ActionEvent actionEvent) throws IOException, SQLException {
+    public void onMonthlyTab(ActionEvent actionEvent) {
         ControllerTabState.setState("isMonthlyTab");
         setTabProperties();
     }
 
-    public void onAllAppointmentsTab(ActionEvent actionEvent) throws IOException, SQLException {
+    public void onAllAppointmentsTab(ActionEvent actionEvent) {
         ControllerTabState.setState("isAllTab");
         setTabProperties();
 
@@ -204,7 +204,7 @@ public class MainScreenController implements Initializable {
             titleOfEntryScreen = "New Appointment Entry";
             setAppointmentTable();
         }
-
+        //System.out.println(ControllerTabState.getState());
     }
 
     public void onLogOut(ActionEvent actionEvent) throws IOException {
@@ -224,7 +224,6 @@ public class MainScreenController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        System.out.println(ControllerTabState.getState());
         setTabProperties();
         localLocation.setText(Local.getLocation());
     }

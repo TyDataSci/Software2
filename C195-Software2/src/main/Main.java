@@ -6,6 +6,8 @@ package main;
  */
 
 import dao.*;
+import javafx.collections.ObservableList;
+import model.Appointment;
 import model.Contact;
 import model.Country;
 import utilities.Local;
@@ -33,6 +35,12 @@ public class Main extends Application{
     public static void main(String[] args) throws SQLException {
         DBConnection.openConnection();
         System.out.println(Local.getLanguage());
+        System.out.println(DivisionDAO.getDivisionMap().get(1));
+        System.out.println(DivisionDAO.getDivisionMap().get(2));
+        System.out.println(DivisionDAO.getDivisionMap().get(3));
+        System.out.println(AppointmentDAO.getDailyAppointments(28).get(0).getStart());
+        System.out.println(AppointmentDAO.getWeeklyAppointments(21).get(1).getStart());
+        System.out.println(AppointmentDAO.getMonthlyAppointments(5).get(0).getStart());
         //String fetchStatement = "SELECT * FROM countries";
        // DBQuery.setPreparedStatement(fetchStatement);
         //PreparedStatement statement = DBQuery.getPreparedStatement();

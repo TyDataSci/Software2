@@ -1,6 +1,5 @@
 package controller;
 
-import dao.AppointmentDAO;
 import dao.CustomerDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -13,15 +12,12 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Line;
 import javafx.stage.Stage;
-import model.Appointment;
 import model.Customer;
 import utilities.ControllerTabState;
 import utilities.Local;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class CustomerScreenController implements Initializable {
@@ -52,21 +48,16 @@ public class CustomerScreenController implements Initializable {
     public TableColumn<Customer, String> col4;
     public TableColumn<Customer, String> col5;
     public TableColumn<Customer, String> col6;
-    public TableColumn<Customer, String> col7;
-    public TableColumn<Customer, String> col8;
-    public TableColumn<Customer, String> col9;
-    public TableColumn<Customer, String> col10;
-
     private String entryScreen = "/view/AppointmentEntryScreen.fxml";
     private String titleOfEntryScreen = "New Appointment Entry";
 
 
-    public void onCustomerTab(ActionEvent actionEvent) throws IOException, SQLException {
+    public void onCustomerTab(ActionEvent actionEvent) {
         ControllerTabState.setState("isCustomersTab");
         setTabProperties();
     }
 
-    public void onReportsTab(ActionEvent actionEvent) throws IOException, SQLException {
+    public void onReportsTab(ActionEvent actionEvent) throws IOException {
         ControllerTabState.setState("isReportsTab");
         Parent root = FXMLLoader.load(getClass().getResource("/view/MainScreen.fxml"));
         Scene scene = new Scene(root);
@@ -76,7 +67,7 @@ public class CustomerScreenController implements Initializable {
         window.show();
     }
 
-    public void onDailyTab(ActionEvent actionEvent) throws IOException, SQLException {
+    public void onDailyTab(ActionEvent actionEvent) throws IOException {
         ControllerTabState.setState("isDailyTab");
         Parent root = FXMLLoader.load(getClass().getResource("/view/MainScreen.fxml"));
         Scene scene = new Scene(root);
@@ -87,7 +78,7 @@ public class CustomerScreenController implements Initializable {
 
     }
 
-    public void onWeeklyTab(ActionEvent actionEvent) throws IOException, SQLException {
+    public void onWeeklyTab(ActionEvent actionEvent) throws IOException {
         ControllerTabState.setState("isWeeklyTab");
         Parent root = FXMLLoader.load(getClass().getResource("/view/MainScreen.fxml"));
         Scene scene = new Scene(root);
@@ -97,7 +88,7 @@ public class CustomerScreenController implements Initializable {
         window.show();
     }
 
-    public void onMonthlyTab(ActionEvent actionEvent) throws IOException, SQLException {
+    public void onMonthlyTab(ActionEvent actionEvent) throws IOException {
         ControllerTabState.setState("isMonthlyTab");
         Parent root = FXMLLoader.load(getClass().getResource("/view/MainScreen.fxml"));
         Scene scene = new Scene(root);
@@ -107,7 +98,7 @@ public class CustomerScreenController implements Initializable {
         window.show();
     }
 
-    public void onAllAppointmentsTab(ActionEvent actionEvent) throws IOException, SQLException {
+    public void onAllAppointmentsTab(ActionEvent actionEvent) throws IOException {
         ControllerTabState.setState("isAllTab");
         Parent root = FXMLLoader.load(getClass().getResource("/view/MainScreen.fxml"));
         Scene scene = new Scene(root);
@@ -145,7 +136,7 @@ public class CustomerScreenController implements Initializable {
         col3.setCellValueFactory(new PropertyValueFactory<>("phone"));
         col4.setCellValueFactory(new PropertyValueFactory<>("address"));
         col5.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
-        col6.setCellValueFactory(new PropertyValueFactory<>("divisionId"));
+        col6.setCellValueFactory(new PropertyValueFactory<>("divisionName"));
     }
 
     public void setTabProperties() {
