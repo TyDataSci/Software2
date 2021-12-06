@@ -1,5 +1,7 @@
 package model;
 
+import java.time.temporal.TemporalAccessor;
+
 public class Appointment {
     private int appointmentId;
     private String title;
@@ -15,8 +17,13 @@ public class Appointment {
     int customerId;
     int userId;
     int contactId;
+    String bookedIndicator;
+    String customerString;
+    String contactName;
 
-    public Appointment(int appointmentId, String title, String description, String location, String type, String start, String end, String createDate, String createdBy, String lastUpdate, String lastUpdatedBy, int customerId, int userId, int contactId) {
+    public Appointment(int appointmentId, String title, String description, String location, String type, String start, String end,
+                       String createDate, String createdBy, String lastUpdate, String lastUpdatedBy, int customerId, int userId, int contactId,
+                       String customerString,String contactName) {
         this.appointmentId = appointmentId;
         this.title = title;
         this.description = description;
@@ -31,6 +38,9 @@ public class Appointment {
         this.customerId = customerId;
         this.userId = userId;
         this.contactId = contactId;
+        this.bookedIndicator = "Booked";
+        this.customerString = customerString;
+        this.contactName = contactName;
     }
 
     public int getAppointmentId() {
@@ -143,5 +153,13 @@ public class Appointment {
 
     public void setContactId(int contactId) {
         this.contactId = contactId;
+    }
+
+    public String getCustomerString() {
+        return customerString;
+    }
+
+    public String getContactName() {
+        return contactName;
     }
 }

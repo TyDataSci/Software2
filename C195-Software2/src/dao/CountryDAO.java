@@ -91,4 +91,14 @@ public class CountryDAO {
 
         return country;
     }
+
+    public static Country countryFromLocation(String location) {
+        Country matchedCountry = null;
+        for (Country country : getAllCountries()) {
+            if (location.contains(country.getCountryName())) {
+                matchedCountry = country;
+                break;
+            }
+        } return matchedCountry;
+    }
 }

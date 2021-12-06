@@ -50,6 +50,7 @@ public class CustomerScreenController implements Initializable {
     public TableColumn<Customer, String> col6;
     private String entryScreen = "/view/AppointmentEntryScreen.fxml";
     private String titleOfEntryScreen = "New Appointment Entry";
+    private static Customer selectedCustomer;
 
 
     public void onCustomerTab(ActionEvent actionEvent) {
@@ -161,9 +162,22 @@ public class CustomerScreenController implements Initializable {
     }
 
     public void onDeleteEntry(ActionEvent actionEvent) {
+        selectedCustomer = mainTable.getSelectionModel().getSelectedItem();
+        if (null != selectedCustomer){
+
+        }
     }
 
-    public void onEditExistingEntry(ActionEvent actionEvent) {
+    public void onEditExistingEntry(ActionEvent actionEvent) throws IOException {
+       selectedCustomer = mainTable.getSelectionModel().getSelectedItem();
+       if (null != selectedCustomer){
+           Parent root = FXMLLoader.load(getClass().getResource(entryScreen));
+           Scene scene = new Scene(root);
+           Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+           window.setTitle(titleOfEntryScreen);
+           window.setScene(scene);
+           window.show();
+       }
     }
 
     @Override

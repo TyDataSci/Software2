@@ -8,9 +8,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 
 public class CustomerDAO {
     private static final String tableName ="customers";
+    private static final HashMap<Integer, Customer> customerMap = new HashMap<Integer, Customer>();
 
     public static ObservableList<Customer> getAllCustomers() {
         ObservableList<Customer> allCustomers = FXCollections.observableArrayList();
@@ -72,6 +74,37 @@ public class CustomerDAO {
         }
 
         return customer;
+    }
+
+    public static HashMap<Integer, Customer> getCustomerMap() {
+        if (customerMap.isEmpty()){
+            System.out.println("Updating Customer HashMap");
+            updateCustomerMap();
+        }
+        return customerMap;
+    }
+
+    public static void updateCustomerMap() {
+        try {
+            customerMap.clear();
+            int key = 0;
+            Customer value = null;
+            String fetchStatement = "SELECT * FROM " + tableName;
+            Connection connection = DBConnection.getConnection();
+            DBQuery.setPreparedStatement(connection, fetchStatement);
+            PreparedStatement statement = DBQuery.getPreparedStatement();
+            statement.execute();
+            ResultSet results  = statement.getResultSet();
+            while (results.next()){
+                key = results.getInt("Customer_ID");
+                value = getCustomer(key);
+
+                customerMap.put(key,value);
+            }
+        }
+        catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
 }

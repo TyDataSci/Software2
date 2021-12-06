@@ -40,4 +40,8 @@ public class Country {
         return lastUpdatedBy;
     }
 
+    @Override
+    public String toString(){
+        return countryName;
+    }
 }

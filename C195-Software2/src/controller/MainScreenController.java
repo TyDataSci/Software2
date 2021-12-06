@@ -67,10 +67,13 @@ public class MainScreenController implements Initializable {
     public TableColumn<Appointment, String> col8;
     public TableColumn<Appointment, String> col9;
     public TableColumn<Appointment, String> col10;
-
     private String entryScreen = "/view/AppointmentEntryScreen.fxml";
     private String titleOfEntryScreen = "New Appointment Entry";
+    private static Appointment selectedAppointment;
 
+    public static Appointment getSelectedAppointment() {
+        return selectedAppointment;
+    }
 
     public void onCustomerTab(ActionEvent actionEvent) throws IOException, SQLException {
         ControllerTabState.setState("isCustomersTab");
@@ -131,7 +134,6 @@ public class MainScreenController implements Initializable {
     }
 
     public void setAppointmentTable() {
-        mainTable.setItems(AppointmentDAO.getAllAppointments());
         col1.setText("Appointment ID");
         col1.setCellValueFactory(new PropertyValueFactory<>("appointmentId"));
         col2.setText("Title");
@@ -140,18 +142,18 @@ public class MainScreenController implements Initializable {
         col3.setCellValueFactory(new PropertyValueFactory<>("description"));
         col4.setText("Location");
         col4.setCellValueFactory(new PropertyValueFactory<>("location"));
-        col5.setText("Type");
-        col5.setCellValueFactory(new PropertyValueFactory<>("type"));
-        col6.setText("Start");
-        col6.setCellValueFactory(new PropertyValueFactory<>("start"));
-        col7.setText("End");
-        col7.setCellValueFactory(new PropertyValueFactory<>("end"));
-        col8.setText("Customer ID");
-        col8.setCellValueFactory(new PropertyValueFactory<>("customerId"));
-        col9.setText("User ID");
-        col9.setCellValueFactory(new PropertyValueFactory<>("userId"));
-        col10.setText("Contact ID");
-        col10.setCellValueFactory(new PropertyValueFactory<>("contactId"));
+        col5.setText("Contact");
+        col5.setCellValueFactory(new PropertyValueFactory<>("contactName"));
+        col6.setText("Type");
+        col6.setCellValueFactory(new PropertyValueFactory<>("type"));
+        col7.setText("Start");
+        col7.setCellValueFactory(new PropertyValueFactory<>("start"));
+        col8.setText("End");
+        col8.setCellValueFactory(new PropertyValueFactory<>("end"));
+        col9.setText("Customer");
+        col9.setCellValueFactory(new PropertyValueFactory<>("customerString"));
+        col10.setText("User ID");
+        col10.setCellValueFactory(new PropertyValueFactory<>("userId"));
     }
 
     public void setTabProperties() {
@@ -163,6 +165,7 @@ public class MainScreenController implements Initializable {
             addNewEntry.setText("Add Appointment");
             entryScreen = "/view/AppointmentEntryScreen.fxml";
             titleOfEntryScreen = "New Appointment Entry";
+            mainTable.setItems(AppointmentDAO.getDailyAppointments());
             setAppointmentTable();
         }
         else if (Objects.equals(ControllerTabState.getState(), "isWeeklyTab")) {
@@ -171,6 +174,7 @@ public class MainScreenController implements Initializable {
             addNewEntry.setText("Add Appointment");
             entryScreen = "/view/AppointmentEntryScreen.fxml";
             titleOfEntryScreen = "New Appointment Entry";
+            mainTable.setItems(AppointmentDAO.getWeeklyAppointments());
             setAppointmentTable();
         }
         else if (Objects.equals(ControllerTabState.getState(), "isMonthlyTab")) {
@@ -179,6 +183,7 @@ public class MainScreenController implements Initializable {
             addNewEntry.setText("Add Appointment");
             entryScreen = "/view/AppointmentEntryScreen.fxml";
             titleOfEntryScreen = "New Appointment Entry";
+            mainTable.setItems(AppointmentDAO.getMonthlyAppointments());
             setAppointmentTable();
         }
         else if (Objects.equals(ControllerTabState.getState(), "isAllTab")) {
@@ -187,6 +192,7 @@ public class MainScreenController implements Initializable {
             addNewEntry.setText("Add Appointment");
             entryScreen = "/view/AppointmentEntryScreen.fxml";
             titleOfEntryScreen = "New Appointment Entry";
+            mainTable.setItems(AppointmentDAO.getAllAppointments());
             setAppointmentTable();
         }
         else if (Objects.equals(ControllerTabState.getState(), "isCustomersTab")){
@@ -202,6 +208,7 @@ public class MainScreenController implements Initializable {
             addNewEntry.setText("Add Appointment");
             entryScreen = "/view/AppointmentEntryScreen.fxml";
             titleOfEntryScreen = "New Appointment Entry";
+            mainTable.setItems(AppointmentDAO.getAllAppointments());
             setAppointmentTable();
         }
         //System.out.println(ControllerTabState.getState());
@@ -219,7 +226,16 @@ public class MainScreenController implements Initializable {
     public void onDeleteEntry(ActionEvent actionEvent) {
     }
 
-    public void onEditExistingEntry(ActionEvent actionEvent) {
+    public void onEditExistingEntry(ActionEvent actionEvent) throws IOException {
+        selectedAppointment = mainTable.getSelectionModel().getSelectedItem();
+        if (null != selectedAppointment){
+            Parent root = FXMLLoader.load(getClass().getResource(entryScreen));
+            Scene scene = new Scene(root);
+            Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            window.setTitle(titleOfEntryScreen);
+            window.setScene(scene);
+            window.show();
+        }
     }
 
     @Override

@@ -6,10 +6,8 @@ package main;
  */
 
 import dao.*;
-import javafx.collections.ObservableList;
 import model.Appointment;
 import model.Contact;
-import model.Country;
 import utilities.Local;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -38,9 +36,17 @@ public class Main extends Application{
         System.out.println(DivisionDAO.getDivisionMap().get(1));
         System.out.println(DivisionDAO.getDivisionMap().get(2));
         System.out.println(DivisionDAO.getDivisionMap().get(3));
-        System.out.println(AppointmentDAO.getDailyAppointments(28).get(0).getStart());
-        System.out.println(AppointmentDAO.getWeeklyAppointments(21).get(1).getStart());
-        System.out.println(AppointmentDAO.getMonthlyAppointments(5).get(0).getStart());
+        System.out.println(AppointmentDAO.getDailyAppointments());
+        System.out.println(AppointmentDAO.getWeeklyAppointments());
+        System.out.println("test: " + AppointmentDAO.getAppointmentsBySelectDate(28,5,2020).get(0).getStart());
+        Appointment newApp = AppointmentDAO.getAppointment(3);
+        newApp.setTitle("Long Meeting");
+        AppointmentDAO.updateAppointment(newApp);
+        System.out.println("Test Update: " + AppointmentDAO.getAppointment(3).getTitle());
+        System.out.println("Test Contact Map: " + ContactDAO.getContactMap().get(1));
+        System.out.println("Test Contact Map: " + ContactDAO.getContactMap().get(2));
+        System.out.println("Test Customer Map: " + CustomerDAO.getCustomerMap().get(2));
+        System.out.println("Test Customer Map: " + CustomerDAO.getCustomerMap().get(1));
         //String fetchStatement = "SELECT * FROM countries";
        // DBQuery.setPreparedStatement(fetchStatement);
         //PreparedStatement statement = DBQuery.getPreparedStatement();

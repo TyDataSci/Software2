@@ -6,7 +6,6 @@ public class ControllerTabState {
 
     public static String getState() {return state;
     }
-
     public static void setState(String newState) {
             state = newState;
     }
