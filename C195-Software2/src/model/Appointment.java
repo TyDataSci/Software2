@@ -1,5 +1,7 @@
 package model;
 
+import utilities.Local;
+
 import java.time.temporal.TemporalAccessor;
 
 public class Appointment {
@@ -30,7 +32,7 @@ public class Appointment {
         this.location = location;
         this.type = type;
         this.start = start;
-        this.end = end;
+        this.end = Local.getZonedDateTime(end);
         this.createDate = createDate;
         this.createdBy = createdBy;
         this.lastUpdate = lastUpdate;
@@ -88,7 +90,7 @@ public class Appointment {
     }
 
     public void setStart(String start) {
-        this.start = start;
+        this.start = Local.getZonedDateTimeInUTC(start);
     }
 
     public String getEnd() {
@@ -96,7 +98,7 @@ public class Appointment {
     }
 
     public void setEnd(String end) {
-        this.end = end;
+        this.end = Local.getZonedDateTimeInUTC(end);
     }
 
     public String getCreateDate() {
@@ -161,5 +163,9 @@ public class Appointment {
 
     public String getContactName() {
         return contactName;
+    }
+
+    public String getBookedIndicator() {
+        return bookedIndicator;
     }
 }

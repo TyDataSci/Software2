@@ -2,7 +2,9 @@ package dao;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import model.Appointment;
 import model.Customer;
+import utilities.CurrentUser;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -105,6 +107,69 @@ public class CustomerDAO {
         catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+    }
+    public static void addCustomer(Customer newCustomer) {
+        try {
+            Connection connection = DBConnection.getConnection();
+            String fetchStatement = "\n" + "INSERT INTO " + tableName + " ";
+            fetchStatement += "\n" + "(Customer_Name,Address,Postal_Code,Phone,Create_Date,Created_By,Last_Update,Last_Updated_By,Division_ID)";
+            fetchStatement += "\n" + "values (?,?,?,?,NOW(),?,NOW(),?,?)";
+            DBQuery.setPreparedStatement(connection, fetchStatement);
+            PreparedStatement statement = DBQuery.getPreparedStatement();
+            statement.setString(1,newCustomer.getCustomerName());
+            statement.setString(2,newCustomer.getAddress());
+            statement.setString(3,newCustomer.getPostalCode());
+            statement.setString(4,newCustomer.getPhone());
+            statement.setString(5, CurrentUser.getCurrentUser());
+            statement.setString(6, CurrentUser.getCurrentUser());
+            statement.setInt(7,newCustomer.getDivisionId());
+            System.out.println(statement.toString());
+            statement.execute();
+            ResultSet results = statement.getResultSet();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        updateCustomerMap();
+    }
+    public static void updateCustomer(Customer selectCustomer) {
+        try {
+            Connection connection = DBConnection.getConnection();
+            String fetchStatement = "\n" + "UPDATE " + tableName;
+            fetchStatement += "\n" + "SET Customer_Name=?,Address=?,Postal_Code=?,Phone=?,Last_Update=NOW(),Last_Updated_By=?,Division_ID=?";
+            fetchStatement += "\n" + "WHERE Customer_ID=?";
+            DBQuery.setPreparedStatement(connection, fetchStatement);
+            PreparedStatement statement = DBQuery.getPreparedStatement();
+            statement.setString(1,selectCustomer.getCustomerName());
+            statement.setString(2,selectCustomer.getAddress());
+            statement.setString(3,selectCustomer.getPostalCode());
+            statement.setString(4,selectCustomer.getPhone());
+            statement.setInt(5, CurrentUser.getCurrentUserID());
+            statement.setInt(6,selectCustomer.getDivisionId());
+            statement.setInt(7,selectCustomer.getCustomerId());
+            System.out.println(statement.toString());
+            statement.execute();
+            ResultSet results = statement.getResultSet();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        updateCustomerMap();
+    }
+    public static void deleteCustomer(Customer selectCustomer) {
+        try {
+            Connection connection = DBConnection.getConnection();
+            String fetchStatement = "\n" + "DELETE FROM " + tableName;
+            fetchStatement += "\n" + "WHERE Customer_ID=?";
+            DBQuery.setPreparedStatement(connection, fetchStatement);
+            PreparedStatement statement = DBQuery.getPreparedStatement();
+            statement.setInt(1, selectCustomer.getCustomerId());
+            System.out.println(statement.toString());
+            statement.execute();
+            ResultSet results = statement.getResultSet();
+        }
+        catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        updateCustomerMap();
     }
 
 }

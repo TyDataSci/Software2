@@ -1,10 +1,9 @@
 package utilities;
 
 import java.sql.Timestamp;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
+import java.time.format.DateTimeParseException;
 import java.util.Locale;
 import java.util.TimeZone;
 
@@ -29,6 +28,46 @@ public class Local {
         String nowDateTime = dateTimeFormat.format(ldt);
 
         return nowDateTime;
+    }
+
+    public static String getZonedDateTime(String time) {
+        try {
+            DateTimeFormatter dateTimeFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            LocalDateTime localDateTime = LocalDateTime.parse(time, dateTimeFormat);
+            ZonedDateTime utcDateTime = localDateTime.atZone(ZoneId.of("UTC"));
+            ZoneId zoneID = ZoneId.systemDefault();
+
+            ZonedDateTime zoneDateTime = utcDateTime.withZoneSameInstant(zoneID);
+            String zoneTimeString = String.valueOf(zoneDateTime.toLocalTime());
+            String zoneDateString = String.valueOf(zoneDateTime.toLocalDate());
+            return zoneDateString + " " + zoneTimeString;
+        }
+        catch (DateTimeParseException e) {
+            System.out.println(e.getMessage());
+            DateTimeFormatter dateTimeFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            LocalDateTime localDateTime = LocalDateTime.parse(time, dateTimeFormat);
+            ZonedDateTime utcDateTime = localDateTime.atZone(ZoneId.of("UTC"));
+            ZoneId zoneID = ZoneId.systemDefault();
+
+            ZonedDateTime zoneDateTime = utcDateTime.withZoneSameInstant(zoneID);
+            String zoneTimeString = String.valueOf(zoneDateTime.toLocalTime());
+            String zoneDateString = String.valueOf(zoneDateTime.toLocalDate());
+            return zoneDateString + " " + zoneTimeString;
+        }
+    }
+
+    public static String getZonedDateTimeInUTC(String time) {
+        DateTimeFormatter dateTimeFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        LocalDateTime localDateTime = LocalDateTime.parse(time, dateTimeFormat);
+        ZonedDateTime zoneDateTime = localDateTime.atZone(ZoneId.systemDefault());
+        ZoneId utcID = ZoneId.of("UTC");
+
+        ZonedDateTime utcDateTime = zoneDateTime.withZoneSameInstant(utcID);
+        String utcTimeString = String.valueOf(utcDateTime.toLocalTime());
+        String utcDateString = String.valueOf(utcDateTime.toLocalDate());
+
+        return utcDateString + " " + utcTimeString;
+
     }
 
 

@@ -64,7 +64,7 @@ public class CountryDAO {
 
             return country;
         }
-    public static Country getCountry(int selectCountryId) throws SQLException {
+    public static Country getCountry(int selectCountryId) {
         Country country = null;
         try {
             String fetchStatement = "SELECT * FROM " + tableName + " WHERE Country_ID = ?" ;

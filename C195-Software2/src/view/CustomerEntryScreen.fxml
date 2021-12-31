@@ -9,21 +9,21 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="732.0" prefWidth="635.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CustomerEntryController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="710.0" prefWidth="635.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CustomerEntryController">
       <children>
-      <AnchorPane layoutX="-2.0" prefHeight="732.0" prefWidth="637.0" style="-fx-background-color: #394956;">
+      <AnchorPane layoutX="-2.0" prefHeight="710.0" prefWidth="637.0" style="-fx-background-color: #394956;">
          <children>
-            <Label fx:id="nowDatetime" alignment="BASELINE_CENTER" layoutY="685.0" prefHeight="32.0" prefWidth="201.0" text="Nov 12, 04:04 PM " textFill="WHITE">
+            <Label fx:id="nowDatetime" alignment="BASELINE_CENTER" layoutY="670.0" prefHeight="32.0" prefWidth="201.0" text="Nov 12, 04:04 PM " textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="customerNameTextBox" layoutX="73.0" layoutY="95.0" prefHeight="31.0" prefWidth="437.0" style="-fx-background-radius: 5;">
+            <TextField fx:id="customerNameTextBox" layoutX="73.0" layoutY="95.0" prefHeight="31.0" prefWidth="364.0" style="-fx-background-radius: 5;">
                <font>
                   <Font size="15.0" />
                </font>
             </TextField>
-            <Button fx:id="save" layoutX="152.0" layoutY="585.0" mnemonicParsing="false" onAction="#onSave" prefHeight="34.0" prefWidth="133.0" style="-fx-background-color: #FF7F50; -fx-background-radius: 50; -fx-background-insets: 1;" text="Save" textFill="#394956">
+            <Button fx:id="save" layoutX="152.0" layoutY="532.0" mnemonicParsing="false" onAction="#onSave" prefHeight="34.0" prefWidth="133.0" style="-fx-background-color: #FF7F50; -fx-background-radius: 50; -fx-background-insets: 1;" text="Save" textFill="#394956">
                <font>
                   <Font name="Calibri Bold" size="18.0" />
                </font>
@@ -38,9 +38,9 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <ToggleButton layoutX="547.0" layoutY="690.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="34.0" style="-fx-background-radius: 50; -fx-background-color: #F4A460;" text="EN" />
-            <ToggleButton layoutX="581.0" layoutY="690.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="34.0" style="-fx-background-radius: 50; -fx-background-color: #FFEFD5;" text="FR" />
-            <Label alignment="BASELINE_RIGHT" layoutX="481.0" layoutY="690.0" prefHeight="25.0" prefWidth="63.0" text="Language" textFill="#fafafa">
+            <ToggleButton layoutX="547.0" layoutY="675.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="34.0" style="-fx-background-radius: 50; -fx-background-color: #F4A460;" text="EN" />
+            <ToggleButton layoutX="581.0" layoutY="675.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="34.0" style="-fx-background-radius: 50; -fx-background-color: #FFEFD5;" text="FR" />
+            <Label alignment="BASELINE_RIGHT" layoutX="481.0" layoutY="675.0" prefHeight="25.0" prefWidth="63.0" text="Language" textFill="#fafafa">
                <font>
                   <Font size="14.0" />
                </font>
@@ -57,83 +57,83 @@
             </Label>
             <Line endX="448.0" endY="-53.0" fill="#8a8a8a" layoutX="122.0" layoutY="235.0" startX="-97.0" startY="-53.0" stroke="WHITE" strokeWidth="4.0" />
             <Line endX="445.0" endY="-54.5" fill="WHITE" layoutX="121.0" layoutY="117.0" startX="-97.0" startY="-54.5" stroke="WHITE" strokeWidth="4.0" />
-            <TextField fx:id="streetNameTextBox" layoutX="67.0" layoutY="217.0" prefHeight="31.0" prefWidth="437.0" style="-fx-background-radius: 5;">
+            <TextField fx:id="streetNameTextBox" layoutX="67.0" layoutY="217.0" prefHeight="31.0" prefWidth="364.0" style="-fx-background-radius: 5;">
                <font>
                   <Font size="15.0" />
                </font>
             </TextField>
-            <Label layoutX="67.0" layoutY="192.0" prefHeight="25.0" prefWidth="187.0" text="*Street Name" textFill="#fafafa">
+            <Label layoutX="67.0" layoutY="192.0" prefHeight="25.0" prefWidth="187.0" text="*Address" textFill="#fafafa">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <TextField fx:id="cityTextBox" layoutX="67.0" layoutY="293.0" prefHeight="31.0" prefWidth="150.0" style="-fx-background-radius: 5;">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </TextField>
-            <Label layoutX="67.0" layoutY="268.0" prefHeight="25.0" prefWidth="187.0" text="*City" textFill="#fafafa">
+            <Label layoutX="67.0" layoutY="276.0" prefHeight="25.0" prefWidth="187.0" text="*Country" textFill="#fafafa">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label layoutX="67.0" layoutY="348.0" prefHeight="25.0" prefWidth="187.0" text="*Country" textFill="#fafafa">
+            <ComboBox fx:id="countryComboBox" layoutX="68.0" layoutY="305.0" onAction="#onCountrySelected" prefHeight="25.0" prefWidth="218.0" />
+            <Label fx:id="divisionLabel" layoutX="332.0" layoutY="276.0" prefHeight="25.0" prefWidth="187.0" text="*Division" textFill="#fafafa">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <ComboBox fx:id="countryComboBox" layoutX="68.0" layoutY="377.0" prefWidth="150.0" />
-            <Label fx:id="divisionLabel" layoutX="261.0" layoutY="348.0" prefHeight="25.0" prefWidth="187.0" text="*Division" textFill="#fafafa">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <ComboBox fx:id="divisionComboBox" layoutX="262.0" layoutY="377.0" prefWidth="150.0" />
-            <Button fx:id="cancel" layoutX="288.0" layoutY="584.0" mnemonicParsing="false" onAction="#onCancel" prefHeight="34.0" prefWidth="133.0" style="-fx-background-color: transparent; -fx-border-radius: 50; -fx-background-insets: 1; -fx-border-color: #FAFAFA;" text="Cancel" textFill="WHITE">
+            <ComboBox fx:id="divisionComboBox" layoutX="333.0" layoutY="305.0" prefHeight="25.0" prefWidth="218.0" />
+            <Button fx:id="cancel" layoutX="288.0" layoutY="531.0" mnemonicParsing="false" onAction="#onCancel" prefHeight="34.0" prefWidth="133.0" style="-fx-background-color: transparent; -fx-border-radius: 50; -fx-background-insets: 1; -fx-border-color: #FAFAFA;" text="Cancel" textFill="WHITE">
                <font>
                   <Font name="Calibri" size="18.0" />
                </font>
             </Button>
             <Line endX="20.0" endY="617.0" layoutX="591.0" layoutY="54.0" startX="20.0" startY="-17.0" stroke="#48658d" />
-            <Label layoutX="574.0" layoutY="2.0" prefHeight="25.0" prefWidth="63.0" text="0101" textFill="#949090">
+            <Label fx:id="userID" layoutX="574.0" layoutY="2.0" prefHeight="25.0" prefWidth="63.0" text="0101" textFill="#949090">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <TextField fx:id="zipCodeTextBox" layoutX="270.0" layoutY="293.0" prefHeight="31.0" prefWidth="113.0" style="-fx-background-radius: 5;">
+            <TextField fx:id="zipCodeTextBox" layoutX="467.0" layoutY="216.0" prefHeight="31.0" prefWidth="79.0" style="-fx-background-radius: 5;">
                <font>
                   <Font size="15.0" />
                </font>
             </TextField>
-            <Label layoutX="270.0" layoutY="268.0" prefHeight="25.0" prefWidth="187.0" text="*Zip Code" textFill="#fafafa">
+            <Label layoutX="467.0" layoutY="191.0" prefHeight="25.0" prefWidth="127.0" text="*Zip Code" textFill="#fafafa">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label alignment="BOTTOM_LEFT" layoutX="37.0" layoutY="423.0" prefHeight="48.0" prefWidth="357.0" text="Customer Contact Information" textFill="WHITE">
+            <Label alignment="BOTTOM_LEFT" layoutX="37.0" layoutY="357.0" prefHeight="48.0" prefWidth="357.0" text="Customer Contact Information" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <Line endX="448.0" endY="-53.0" fill="#8a8a8a" layoutX="129.0" layoutY="526.0" startX="-97.0" startY="-53.0" stroke="WHITE" strokeWidth="4.0" />
-            <TextField fx:id="phoneNumberTextBox" layoutX="67.0" layoutY="515.0" prefHeight="31.0" prefWidth="437.0" style="-fx-background-radius: 5;">
+            <Line endX="448.0" endY="-53.0" fill="#8a8a8a" layoutX="129.0" layoutY="460.0" startX="-97.0" startY="-53.0" stroke="WHITE" strokeWidth="4.0" />
+            <TextField fx:id="phoneNumberTextBox" layoutX="67.0" layoutY="452.0" prefHeight="31.0" prefWidth="467.0" style="-fx-background-radius: 5;">
                <font>
                   <Font size="15.0" />
                </font>
             </TextField>
-            <Label layoutX="67.0" layoutY="490.0" prefHeight="25.0" prefWidth="187.0" text="*Phone Number" textFill="#fafafa">
+            <Label layoutX="67.0" layoutY="427.0" prefHeight="25.0" prefWidth="187.0" text="*Phone Number" textFill="#fafafa">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label layoutX="244.0" layoutY="631.0" prefHeight="25.0" prefWidth="150.0" text="*Required Fields" textFill="#fafafa">
+            <Label fx:id="errorMessage" layoutX="152.0" layoutY="573.0" prefHeight="25.0" prefWidth="342.0" textFill="RED">
                <font>
-                  <Font size="16.0" />
+                  <Font size="14.0" />
                </font>
             </Label>
-            <Label fx:id="localLocation" alignment="BASELINE_CENTER" layoutY="660.0" prefHeight="32.0" prefWidth="201.0" text="Midwest USA" textFill="#50cd2a">
+            <Label fx:id="localLocation" alignment="BASELINE_CENTER" layoutY="645.0" prefHeight="32.0" prefWidth="201.0" text="Midwest USA" textFill="#50cd2a">
                <font>
                   <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <TextField fx:id="customerID" disable="true" layoutX="467.0" layoutY="95.0" prefHeight="31.0" prefWidth="127.0" style="-fx-background-radius: 5;" text="Auto-generated">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </TextField>
+            <Label layoutX="467.0" layoutY="73.0" prefHeight="25.0" prefWidth="99.0" text="Customer ID" textFill="#fafafa">
+               <font>
+                  <Font size="16.0" />
                </font>
             </Label>
          </children>

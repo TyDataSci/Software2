@@ -1,5 +1,6 @@
 package controller;
 
+import dao.AppointmentDAO;
 import dao.CustomerDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +15,7 @@ import javafx.scene.shape.Line;
 import javafx.stage.Stage;
 import model.Customer;
 import utilities.ControllerTabState;
+import utilities.CurrentUser;
 import utilities.Local;
 
 import java.io.IOException;
@@ -29,15 +31,12 @@ public class CustomerScreenController implements Initializable {
     public Button allAppointmentsTab;
     public Label nowDatetime;
     public Label welcomeUsername;
-    public TextField searchBox;
     public ToggleButton languageEN;
     public ToggleButton languageFR;
     public Button editExistingEntry;
     public Button addNewEntry;
-    public ComboBox dropdownComboBox;
     public Line accentLine;
     public Button logOut;
-    public Button searchButton;
     public Label tabNameLabel;
     public Button deleteEntry;
     public Label localLocation;
@@ -48,10 +47,14 @@ public class CustomerScreenController implements Initializable {
     public TableColumn<Customer, String> col4;
     public TableColumn<Customer, String> col5;
     public TableColumn<Customer, String> col6;
+    public Label errorMessage;
     private String entryScreen = "/view/AppointmentEntryScreen.fxml";
     private String titleOfEntryScreen = "New Appointment Entry";
     private static Customer selectedCustomer;
 
+    public static Customer getSelectedCustomer() {
+        return selectedCustomer;
+    }
 
     public void onCustomerTab(ActionEvent actionEvent) {
         ControllerTabState.setState("isCustomersTab");
@@ -60,10 +63,10 @@ public class CustomerScreenController implements Initializable {
 
     public void onReportsTab(ActionEvent actionEvent) throws IOException {
         ControllerTabState.setState("isReportsTab");
-        Parent root = FXMLLoader.load(getClass().getResource("/view/MainScreen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/view/Reports.fxml"));
         Scene scene = new Scene(root);
         Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        window.setTitle("Appointment Scheduler");
+        window.setTitle("Reports");
         window.setScene(scene);
         window.show();
     }
@@ -116,8 +119,6 @@ public class CustomerScreenController implements Initializable {
     public void onLanguageFR(ActionEvent actionEvent) {
     }
 
-    public void onSearchButton(ActionEvent mouseEvent) {
-    }
 
     public void onAddNewEntry(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource(entryScreen));
@@ -128,8 +129,6 @@ public class CustomerScreenController implements Initializable {
         window.show();
     }
 
-    public void onDropdownComboBox(ActionEvent actionEvent) {
-    }
     public void setCustomerTable(){
         mainTable.setItems(CustomerDAO.getAllCustomers());
         col1.setCellValueFactory(new PropertyValueFactory<>("customerId"));
@@ -163,8 +162,17 @@ public class CustomerScreenController implements Initializable {
 
     public void onDeleteEntry(ActionEvent actionEvent) {
         selectedCustomer = mainTable.getSelectionModel().getSelectedItem();
-        if (null != selectedCustomer){
-
+        if (null != selectedCustomer) {
+            if (AppointmentDAO.getAppCountByCustomer(selectedCustomer.getCustomerId()) == 0) {
+                CustomerDAO.deleteCustomer(selectedCustomer);
+                setCustomerTable();
+                errorMessage.setTextFill(Paint.valueOf("white"));
+                errorMessage.setText("Customer has been successfully deleted.");
+            }
+            else {
+                errorMessage.setTextFill(Paint.valueOf("red"));
+                errorMessage.setText("Customer has appointments and cannot be deleted.");
+            }
         }
     }
 
@@ -182,7 +190,8 @@ public class CustomerScreenController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        System.out.println(ControllerTabState.getState());
+        selectedCustomer = null;
+        welcomeUsername.setText("Welcome, " + CurrentUser.getCurrentUser());
         setTabProperties();
         localLocation.setText(Local.getLocation());
     }

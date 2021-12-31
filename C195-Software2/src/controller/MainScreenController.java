@@ -1,37 +1,25 @@
 package controller;
-
-import dao.*;
-import model.Contact;
-import model.Country;
+import utilities.CurrentUser;
 import utilities.Local;
-import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.sql.*;
 
 import dao.AppointmentDAO;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Line;
-import javafx.stage.Stage;
 import model.Appointment;
-import utilities.Local;
 import utilities.ControllerTabState;
-import dao.*;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -49,7 +37,6 @@ public class MainScreenController implements Initializable {
     public ToggleButton languageFR;
     public Button editExistingEntry;
     public Button addNewEntry;
-    public ComboBox dropdownComboBox;
     public Line accentLine;
     public Button logOut;
     public Button searchButton;
@@ -75,7 +62,7 @@ public class MainScreenController implements Initializable {
         return selectedAppointment;
     }
 
-    public void onCustomerTab(ActionEvent actionEvent) throws IOException, SQLException {
+    public void onCustomerTab(ActionEvent actionEvent) throws IOException {
         ControllerTabState.setState("isCustomersTab");
         Parent root = FXMLLoader.load(getClass().getResource("/view/CustomerScreen.fxml"));
         Scene scene = new Scene(root);
@@ -85,9 +72,14 @@ public class MainScreenController implements Initializable {
         window.show();
     }
 
-    public void onReportsTab(ActionEvent actionEvent) {
+    public void onReportsTab(ActionEvent actionEvent) throws IOException {
         ControllerTabState.setState("isReportsTab");
-        setTabProperties();
+        Parent root = FXMLLoader.load(getClass().getResource("/view/Reports.fxml"));
+        Scene scene = new Scene(root);
+        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        window.setTitle("Reports");
+        window.setScene(scene);
+        window.show();
     }
 
     public void onDailyTab(ActionEvent actionEvent) {
@@ -118,9 +110,6 @@ public class MainScreenController implements Initializable {
     public void onLanguageFR(ActionEvent actionEvent) {
     }
 
-    public void onSearchButton(ActionEvent mouseEvent) {
-    }
-
     public void onAddNewEntry(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource(entryScreen));
         Scene scene = new Scene(root);
@@ -128,9 +117,6 @@ public class MainScreenController implements Initializable {
         window.setTitle(titleOfEntryScreen);
         window.setScene(scene);
         window.show();
-    }
-
-    public void onDropdownComboBox(ActionEvent actionEvent) {
     }
 
     public void setAppointmentTable() {
@@ -224,6 +210,10 @@ public class MainScreenController implements Initializable {
     }
 
     public void onDeleteEntry(ActionEvent actionEvent) {
+        selectedAppointment = mainTable.getSelectionModel().getSelectedItem();
+        if (null != selectedAppointment)
+            AppointmentDAO.deleteAppointment(selectedAppointment);
+            setTabProperties();
     }
 
     public void onEditExistingEntry(ActionEvent actionEvent) throws IOException {
@@ -240,6 +230,8 @@ public class MainScreenController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        selectedAppointment = null;
+        welcomeUsername.setText("Welcome, " + CurrentUser.getCurrentUser());
         setTabProperties();
         localLocation.setText(Local.getLocation());
     }
